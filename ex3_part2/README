@@ -1,0 +1,103 @@
+meshipeled
+209489327
+
+#######################################all files and short description ################################################
+src- the source directory of the main game
+src.brick_strategies - a package that contains all of the brick_strategies and logics
+src/brick_strategies/AddPaddleStrategy.java -  this class represent the AddPaddleStrategy its responsible for adding
+                                               another paddle in the middle of the screen
+src/brick_strategies/BrickStrategyFactory.java - this class responsible for creating the different Strategies of the
+                                                 bricks in the game
+src/brick_strategies/ChangeCameraStrategy.java - this class represent the ChangeCameraStrategy its
+                                                 responsible for resetting the camera, so it will follow
+                                                 the ball instead of the player POV
+
+src/brick_strategies/ChangeTimeScaleStrategy.java - this class represent the ChangeTimeScaleStrategy its
+                                                    responsible for adjusting the timescale of the game
+                                                    according to the specifier that fell from the current brick
+
+src/brick_strategies/CollisionStrategy.java - an interface for all the strategies
+
+src/brick_strategies/PuckStrategy.java - this class represent the PuckStrategy its responsible for adding three mock
+                                         balls in the place of the current brick
+src/brick_strategies/RemoveBrickStrategy.java - this class represent the RemoveBrickStrategy its responsible for
+                                                removing the brick on coalition
+src/brick_strategies/RemoveBrickStrategyDecorator.java - this class is the decorator of all the objects that implements
+                                                         CollisionStrategy when RemoveBrickStrategy is the base for all
+                                                         the other Strategies
+
+src/gameobjects -  package that contains all the extended gameObjects
+src/gameobjects/Ball.java - this class responsible for creating a ball object
+src/gameobjects/BallCollisionCountdownAgent.java - this class creates BallCollisionCountdownAgent objects
+src/gameobjects/Brick.java - this class responsible for creating Brick object
+src/gameobjects/GraphicLifeCounter.java - this class responsible for creating GraphicLifeCounter objects
+src/gameobjects/MockPaddle.java - this class responsible for creating MockPaddle objects
+src/gameobjects/NumericLifeCounter.java - this class responsible for creating NumericLifeCounter objects
+src/gameobjects/Paddle.java - this class responsible for creating the paddle
+src/gameobjects/Puck.java - this class responsible for creating a Puck object
+src/gameobjects/Quicken.java - this class responsible for creating Quicken objects
+src/gameobjects/Slower.java - this class responsible for creating Slower objects
+
+src/BrickerGameManager.java - this is the class that contains the main function and responsible for running the game
+
+algo_questions - a package that contains the solution to the algorithmic problems
+algo_questions/Solutions.java - the class that contains the algorithms that solve the given problems
+########################################################################################################################
+
+#####################################patterns and design choices########################################################
+I have used inheritance, strategy decorators and packages in the game design pattern
+
+I have used inheritance for all the game object because they have a is a relation. the inheritance
+have helped me organise my code and avoid code duplication.
+
+I have used a strategy to remove the brick from the screen on collision, using the strategy
+helped me avoid complex inheritance tree because removing a brick is not kind of game object but
+a certain behavior.
+
+I have used decorators for all the remove bricks special behaviors. using decorator helped me avoid complex
+inheritance tree and made it easier to create bricks with multiply behaviors
+
+I have used packages to improve my code encapsulation, and have a code which is more organized
+and modular by placing all the object with a certain behavior in the same Package and separate
+them from the objects which have different logics and behaviors
+########################################################################################################################
+
+#################################non API classes and files #############################################################
+i choose to implement the ChangeTimeScaleStrategy which change the time scale of the game according
+to the color of the clock that falls from the brick (red-faster, green-slower)
+ChangeTimeScaleStrategy - responsible for the logics of the strategy, it will create a clock in the
+                          fitting color and change the time scale of the game when the clock touch the paddle
+                          according to the clock color
+
+src/gameobjects/Quicken.java - this class responsible for creating red clocks
+src/gameobjects/Slower.java - this class responsible for creating green clocks
+########################################################################################################################
+
+####################################algoritams solution and runtime complexity##########################################
+
+slotStudyTime - the main idea behind this algorithm is sorting the arrays by decreasing order
+                and run on all the time slots and the tasks and see if the task can be placed in
+                the study slot if so we will place it and move to the next slot otherwise we will move
+                to the next task an try to place it
+                runtime complexity = O(nlog(n)+mlog(m)+m+n)=O(nlog(n)+mlog(m)
+
+
+
+minLeap -  the main idea behind this algorithm is that on every leaf we will find which
+           of the leaf we can jump to will let us jump the farthest in the next jump and
+           jump to this leaf.
+           runtime complexity = O(n)
+
+
+
+bucketWalk - the main idea behind this algorithm is that for all 0<=i<=n write the num of ways to
+           fill the buckets when i=0, A[i]=0 and i=1 A[i] = i and any other 2<=i<=n A[i] = A[i-1]+A[i-2]
+           runtime complexity = O(n)
+
+
+numTrees - the main idea behind this algorithm is that for all 0<=i<=n write the num of Binary Trees
+           that can be made with i nodes for i=0 A[i]=1 and i=1 A[i] = 1, any other 2<=i<=n
+           A[i] = Sum 0<l<n(A[i-1-l]*A[l]
+           runtime complexity = O(n^2)
+########################################################################################################################
+
