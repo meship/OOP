@@ -1,0 +1,86 @@
+meshipeled, 209489327
+yuvalgolbari, 318670379
+
+########################################### brief UMLs review and differences ##########################################
+first UML - at first we stuck to the given API without adding any public functions or classes
+            so the UML looks very similar to the API. we thought about adding a Trees class
+            representing all the trees in the game but then understood there is no use for such
+            class because Tree class already creating the trees
+
+
+final UML - as we started to write the code we understood we have flaws with some of our functionalities
+            the main example for this is handling the leaves at first we created them as a GameObject
+            but as we planned there behaviors we understood they need additional functionality such as
+            uniq behaviors on collisions or transitions handling so we made a leaf class which extends GameObjects
+            also we added Bird class for the bonus (more will be explained at the bonus section) and the
+            following public methods: Terrain: removeInRange, Tree: removeInRange (more details at handling infinite
+            world), override OnCollisions for: Avatar, Block and Leaf.
+
+
+########################################################################################################################
+
+########################################### handling infinite world ####################################################
+
+we handheld the infinite world by removing terrains and trees form a range the player cant see and building
+new terrains and trees at a fitting range by using the crateInRange methods. we used hash function for the seed for the
+trees and terrain placements so that when the player come back the world will remain the same.
+we also created an ArrayList for the leaves of each tree and a map that maps from the tree x position to the leaves
+of the tree. we have similar maps to the terrain and steam blocks, so we can remove object efficiently (no need to
+search the object in game objects) and make sure than no terrain or tree are created at the same placement.
+
+########################################################################################################################
+
+########################################### Tree Module implementation #################################################
+the Tree Module is one of the more complicate modules in this project it contains tow classes the Tree class
+and the Leaf class. the tree class is responsible for creating all the trees it create the steam and the leaves
+the steam are created in a random height between 6-10 and at a probability of 10 percent per x coordinate. ש square
+leaves treetop  us created for each tree. the leaves functionality is seperated between 6 methods and tow classes
+Leaf class - responsible for creating the leaf and add attributes to the leaf. the first methode that regards the leaf
+             functionality is on collision which remove the leaf transitions and sets it velocity to 0.
+             the next one is leavesDimensions this methode add a transition to the leaf that shrink and
+             extend the leaf to imitate wind motion. another methode is leavesAngles which rotate the leaf to
+             better imitate the wind motion effect. the last methode is changeLeafTime that create task schedule
+             for the leaf so that the wind motion wouldn't look too robotic.
+
+Tree class - the leaf related function in this class are deathAndRevive which erase the leaf that has fallen to the
+             ground and crate a new leaf at the treetop in place of the dead leaf. the other method is leafLifeTime
+             which determine the time until the leaf fall and start to wither.
+
+########################################################################################################################
+
+
+########################################### design patterns ############################################################
+we have used inheritance, callbacks and packages in the game design pattern.
+
+inheritance -  for the block, leaf, and avatar objects so they can father extend GameObject simple functionality
+
+transitions and callbacks -  to imitate strategy without adding classes and create a more
+                             readable code with the same functionality.
+
+packages -  to improve our code encapsulation, and have a code which is more organized and modular
+            by placing all the object with a certain behavior in the same Package and separate them from
+            the objects which have different logics and behaviors.
+
+as mentioned earlier at the we had a hard time choosing which design pattern to use, at first. we couldn't decide
+if there is a need for tress class that will create all the trees (similar to factory) but decided it is not needed
+because tree already creating all of the trees (create in range) and the trees are the same object. another dilemma
+we had was concerning the leaves, we couldn't decide whether they should be a regular game object or we should
+use inheritance to make a Leaf which is a GameObject. as we continue to write the code we saw that the leaves need
+further functionality such as remove its transitions on collision.
+########################################################################################################################
+
+########################################### bonus ######################################################################
+we chose to implement the dragon of wisdom (bird class).
+
+background - this dragon has taught a lot and now guiding us from above. the dragon  escort the hero as he
+             discover the world. he watch as the hero, his student, destroying and rebuilding the world as he please
+             and hope his student will not disappoint him, as we know with small responsibility comes small design.
+             well all he can do now is trust his disciple, as he keep wondering endlessly in the sky,
+             monitoring his dear student, after all its the dragon destiny.
+
+
+implementation - we added the bird class which have a transition that allow it to move in a linear motion from
+                 one side of the screen to the other in a repetitive manner it located at the camera coordinate
+                 space so it location will change according to the player motion.
+
+########################################################################################################################
