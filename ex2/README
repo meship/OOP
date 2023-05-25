@@ -1,0 +1,27 @@
+meshipeled
+209489327
+
+the smart player will start at (0,0) if empty or (1,0) otherwise
+after that he will try to complete a row sequence, if he was blocked
+he will try to continue downward to complete a collum sequence
+if the player cant go right or down he will choose a random square
+and continue the strategy from there.
+
+the snartypamts player will start at the middle of the bord if empty
+or at (Bord.SIZE/2-1,Bord.SIZE/2) otherwise. every other turn it will
+check if he can win if so he will place the wining mark, then
+he will check if the opponent can win if so he will block him
+otherwise he will calculate the most officiant move for the cur round
+(a move that will give him the chance of the biggest legal sequence he can form)
+
+the whatever player choose randomly a coordinate and try to place it
+if successful he will place his mark there otherwise he will poll another
+coordinate until successful.
+
+player clever: 495 | player whatever: 5 | Draws: 0
+
+player clever: 0 | player snartypamts: 500 | Draws: 0
+
+player whatever: 1 | player snartypamts: 499 | Draws: 0
+
+player whatever: 480 | player whatever: 515 | Draws: 5
