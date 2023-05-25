@@ -1,0 +1,45 @@
+meshipeled
+209489327
+
+
+#####################################part 4_1 README####################################################################
+my program calculate the character brightness and place them in a new array at the
+exact same position as the fitting char in the char array, after that the program calculate
+the linear stretched and place them in a new array at the exact same position as the fitting
+char in the char array the its calculate each square brightness an find the index of the closest
+value in the linear stretched array, because the order hadn't changed the same index in the char array
+represent the wanted character and so this character will be placed at the ascii art array.
+########################################################################################################################
+
+
+#############################################collections uses###########################################################
+i used hash set for the character set so i won't have to handle the case when the user
+puts the same char in the chars set more then once. i also used a map to ensure that if
+an image is rendered twice it wont calculate it's ascii chars again
+########################################################################################################################
+
+
+############################################algoritems##################################################################
+Find Duplicate - to solve this problem i used the The Tortoise and the Hare algorithm that
+finds cycle in a linked list. to do so the algorithm looks on the array as a linked list in that manner
+the value in the i'th index is also the pointer to the next element for example if lst[1] = 5 so 5 is the value
+of the node and list[5] is the value of the next node. so a cycle is defined when a number appears twice
+because we assumed there is only one repetitive item the algorithm will find the duplicated item.
+we can look at the array this way because we assumed the values of the array are un the range 1-n.
+
+time complexity - O(n) -> we will go trough all of the array twice once for finding the cycle and
+the second time for finding the duplicated element.
+
+space complexity - O(1) -> we created two variables in O(1) memory
+
+
+Morse Code - to solve this problem i used a set. for every word in the
+given list i went over each char in the words and translate it to morse code then summed all this
+word character to a Morse word and added the Morse word to the set. then i returned the size of the set
+the size of the set represent the number of uniq word because set can't have duplicates
+
+time complexity - O(S) when S is the sums of the words length -> we are iterating on all
+the words and for each word on all its letters.
+
+space complexity O(n) -> we are creating a new set that contains all of the uniq Morse words
+########################################################################################################################
